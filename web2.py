@@ -1,18 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def index():
-   return render_template("index.html")
+    return render_template('index.html')
 
-@app.route("/inputnama")
-def index2():
-   return render_template("index2.html")
+@app.route('/inputnama', methods=['GET'])
+def inputnama():
+    return render_template('index2.html')
 
-@app.route("/tampilnama")
-def index3():
-   name= request.args.get("nama_msh", "nilai default")
-   return render_template("index3.html",name2=name)
+@app.route('/tampilnama', methods=['GET'])
+def tampilnama():
+    name = request.args.get('nama_mhs', 'Tidak ada nama')
+    return render_template('index3.html', name2=name)
 
 if __name__ == '__main__':
-   app.run(debug = True)
+    app.run(debug=True)
